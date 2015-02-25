@@ -7,8 +7,8 @@
 //============================================================================
 
 #include <iostream>
-using namespace std;
 #define SIZE 2
+using namespace std;
 class Person {
     string name;
     Person* partner;
@@ -31,7 +31,6 @@ public:
     void engage(Person *p);
     void disengage();
     Person* getNextPref();
-    int rank(Person p);
     string getName();
     void setName(string name);
     void addToPrefList(Person *p);
@@ -55,7 +54,7 @@ bool Person::prefers(Person *p) {
 
 void Person::engage(Person *p) {
     partner = p;
-    p->partner = this;
+    engaged = true;
 }
 
 void Person::disengage() {
@@ -73,14 +72,6 @@ string Person::getName() {
 
 void Person::setName(string n) {
     name = n;
-}
-int Person::rank(Person p) {
-    for(int i = 0; i < SIZE; i++) {
-        if(prefList[i]->getName() == p.getName()) {
-            return i;
-        }
-    }
-    return -1;
 }
 
 void Person::addToPrefList(Person* p) {
@@ -149,17 +140,19 @@ int main() {
             Person *woman = m[i]->getNextPref();
             if (!woman->isEngaged()) {
                 m[i]->engage(woman);
+                woman->engage(m[i]);
             }
             else {
                 if(woman->prefers(m[i])) {
                     woman->getPartner()->disengage();
+                    woman->disengage();
                     m[i]->engage(woman);
                 }
             }
         }
     }
     for (int i = 0; i < SIZE; i++) {
-        cout<<m[i]->getName()<<" : "<<m[i]->getPartner()->getName();
+        cout<<m[i]->getName()<<" : "<<m[i]->getPartner()->getName()<<endl;
     }
     
 }
