@@ -147,6 +147,7 @@ int main() {
                     woman->getPartner()->disengage();
                     woman->disengage();
                     m[i]->engage(woman);
+                    woman->engage(m[i]);
                 }
             }
         }
