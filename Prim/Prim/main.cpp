@@ -91,7 +91,7 @@ void prim() {
         selected_v[min_i] = true;
         selected[min_j][min_i] = true;
         selected_v[min_j] = true;
-        num_selected++;
+        num_selected++; 
     }
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
