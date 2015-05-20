@@ -47,10 +47,6 @@ void readGraph() {
     }
 }
 
-typedef struct {
-    int u,v;
-}node;
-
 deque<int> des_path;
 
 void bfs(int src, int des) {
