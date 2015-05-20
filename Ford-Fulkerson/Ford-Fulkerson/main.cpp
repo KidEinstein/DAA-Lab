@@ -55,38 +55,37 @@ deque<int> des_path;
 
 void bfs(int src, int des) {
     for (int i = 0; i < num_nodes; i++) {
-        for (int i = 0; i < num_nodes; i++) {
-            visited[i] = false;
-        }
-        // Create a queue, enqueue source vertex and mark source vertex
-        // as visited
-        queue <int> q;
-        q.push(src);
-        visited[src] = true;
-        parent[src] = -1;
+        visited[i] = false;
+    }
+    // Create a queue, enqueue source vertex and mark source vertex
+    // as visited
+    queue <int> q;
+    q.push(src);
+    visited[src] = true;
+    parent[src] = -1;
+    
+    // Standard BFS Loop
+    while (!q.empty())
+    {
+        int u = q.front();
+        q.pop();
         
-        // Standard BFS Loop
-        while (!q.empty())
+        for (int v=0; v<num_nodes; v++)
         {
-            int u = q.front();
-            q.pop();
-            
-            for (int v=0; v<num_nodes; v++)
+            if (visited[v]==false && flow[u][v] > 0)
             {
-                if (visited[v]==false && flow[u][v] > 0)
-                {
-                    q.push(v);
-                    parent[v] = u;
-                    visited[v] = true;
-                }
+                q.push(v);
+                parent[v] = u;
+                visited[v] = true;
             }
         }
-        des_path.clear();
-        if (visited[des] == true) {
-            des_path.push_front(des);
-            des = parent[des];
-        }
     }
+    des_path.clear();
+    if (visited[des] == true) {
+        des_path.push_front(des);
+        des = parent[des];
+    }
+    
 }
 
 void displayFlow(int** graph) {
