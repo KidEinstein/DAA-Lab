@@ -21,7 +21,6 @@ struct Edge {
 Edge *e;
 int num_nodes;
 int num_edges;
-int** adj_matrix;
 
 class QuickUnionUF {
     int *id;

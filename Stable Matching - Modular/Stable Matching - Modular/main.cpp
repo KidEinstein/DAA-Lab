@@ -136,7 +136,7 @@ int main() {
     while (singleMenLeft(m)) {
         for (int i = 0; i < SIZE; i++) {
             if (m[i]->isEngaged())
-                break;
+                continue;
             Person *woman = m[i]->getNextPref();
             if (!woman->isEngaged()) {
                 m[i]->engage(woman);

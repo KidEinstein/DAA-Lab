@@ -66,13 +66,12 @@ void prim() {
     }
     
     selected_v[0] = true;
-    
     int num_selected = 0;
     while (num_selected < size - 1) {
         int min_i = -1;
         int min_j = -1;
         for (int i = 0; i < size; i++) {
-            if (!selected_v)
+            if (!selected_v[i])
                 continue;
             for (int j = 0; j < size; j++) {
                 if (selected_v[j] || selected[i][j])

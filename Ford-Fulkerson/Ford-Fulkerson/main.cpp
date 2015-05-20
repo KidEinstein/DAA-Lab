@@ -55,7 +55,9 @@ deque<int> des_path;
 
 void bfs(int src, int des) {
     for (int i = 0; i < num_nodes; i++) {
-        
+        for (int i = 0; i < num_nodes; i++) {
+            visited[i] = false;
+        }
         // Create a queue, enqueue source vertex and mark source vertex
         // as visited
         queue <int> q;
@@ -79,6 +81,7 @@ void bfs(int src, int des) {
                 }
             }
         }
+        des_path.clear();
         if (visited[des] == true) {
             des_path.push_front(des);
             des = parent[des];
@@ -106,10 +109,6 @@ void fordFulkerson() {
     
     vector<int> path;
     while (true) {
-        des_path.clear();
-        for (int i = 0; i < num_nodes; i++) {
-            visited[i] = false;
-        }
         bfs(src, des);
         if (des_path.empty()) {
             break;
