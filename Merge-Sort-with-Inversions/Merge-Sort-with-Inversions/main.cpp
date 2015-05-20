@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 int inversions;
@@ -58,12 +59,16 @@ int main() {
     aux = new int[n];
     srand(time(NULL));
     for (int i = 0; i < n; i++) {
-        arr[i] = rand()%1000;
+        arr[i] = rand() % 1000;
         aux[i] = arr[i];
     }
     printArray(arr, n);
+    clock_t start = clock();
     sort(arr, aux, 0, n-1);
+    clock_t end = clock();
+    double cpu_time = double(end - start) / CLOCKS_PER_SEC;
     printArray(arr, n);
     cout << "Inversions: " << inversions;
+    cout << "Time elapsed: " << cpu_time;
     
 }
