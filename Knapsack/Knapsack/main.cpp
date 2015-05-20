@@ -22,8 +22,15 @@ int** m;
 int n;
 vector<int> chosen_items;
 void knapsack() {
-    for (int w = 0; w < capacity; w++) {
+    m = new int*[n + 1];
+    for (int i = 0; i <= n; i++) {
+        m[i] = new int[capacity + 1];
+    }
+    for (int w = 0; w <= capacity; w++) {
         m[0][w] = 0;
+    }
+    for (int i = 0; i <= n ; i++) {
+        m[i][0] = 0;
     }
     for (int i = 1; i <= n ; i++) {
         for (int w = 1; w <= capacity; w++) {
@@ -73,11 +80,6 @@ int main() {
     
     cout << "Enter capacity of knapsack: ";
     cin >> capacity;
-    
-    m = new int*[n + 1];
-    for (int i = 0; i <= n; i++) {
-        m[i] = new int[capacity + 1];
-    }
     knapsack();
     findSolution();
     
