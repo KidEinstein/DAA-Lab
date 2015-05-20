@@ -61,7 +61,9 @@ void displayGraph() {
     }
 }
 
-int g(int i, IntUSet set) {
+//Starting from node i and reaching 0 going through all nodes in set
+
+int tsp(int i, IntUSet set) {
     if (set.empty()) {
         return adj_matrix[i][0];
     }
@@ -69,7 +71,7 @@ int g(int i, IntUSet set) {
     for (auto it = set.begin(); it!= set.end(); ++it) {
         IntUSet temp = set;
         temp.erase(*it);
-        int res = adj_matrix[i][*it] + g(*it, temp);
+        int res = adj_matrix[i][*it] + tsp(*it, temp);
         if (res < min) {
             min = res;
         }
@@ -80,6 +82,6 @@ int g(int i, IntUSet set) {
 int main() {
     readGraph();
     displayGraph();
-    cout << "Min cost: " << g(0, node_set);
+    cout << "Min cost: " << tsp(0, node_set);
     
 }
