@@ -58,7 +58,7 @@ void bfs(int src, int des) {
     queue <int> q;
     q.push(src);
     visited[src] = true;
-    parent[src] = -1;
+    parent[src] = src;
     
     // Standard BFS Loop
     while (!q.empty())
@@ -78,8 +78,11 @@ void bfs(int src, int des) {
     }
     des_path.clear();
     if (visited[des] == true) {
-        des_path.push_front(des);
-        des = parent[des];
+        while (des != parent[des]) {
+            des_path.push_front(des);
+            des = parent[des];
+        }
+        des_path.push_front(src);
     }
     
 }
@@ -119,7 +122,7 @@ void fordFulkerson() {
             flow[des_path[i]][des_path[i + 1]] -= min_cap;
             rev_flow[des_path[i]][des_path[i + 1]] += min_cap;
         }
-        displayFlow(flow);
+        //displayFlow(flow);
     }
     
 }
